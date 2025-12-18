@@ -340,8 +340,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Remove front-matter from changelog
+          sed '1,/^---$/d' "content/changelog/${{ github.ref_name }}.md" > changelog.md
+
+          # Create a draft release, using the changelog as release notes, and attaching the spec artifacts.
           gh release create -d -t "${{ github.ref_name }}" \
-            -F "content/changelog/${{ github.ref_name }}.md" \
+            -F "changelog.md" \
             "${{ github.ref_name }}" \
             spec.tar.gz \
             spec-historical.tar.gz
