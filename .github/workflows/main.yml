@@ -236,7 +236,9 @@ jobs:
           tar -C "spec${baseURL}" --strip-components=1 -xzf openapi.tar.gz
 
       - name: "📦 Tarball creation"
-        run: tar -czf spec.tar.gz spec
+        run: |
+          cd spec
+          tar -czf ../spec.tar.gz *
 
       - name: "📤 Artifact upload"
         uses: actions/upload-artifact@v4
@@ -261,7 +263,8 @@ jobs:
 
       - name: "📝 Unpack the spec"
         run: |
-          tar -xvzf spec.tar.gz
+          mkdir spec
+          tar -C spec -xvzf spec.tar.gz
 
       - name: "Run htmltest"
         uses: wjdp/htmltest-action@master
@@ -306,7 +309,9 @@ jobs:
           tar -C "spec${baseURL}" --strip-components=1 -xzf openapi.tar.gz
 
       - name: "📦 Tarball creation"
-        run: tar -czf spec-historical.tar.gz spec
+        run: |
+          cd spec
+          tar -czf ../spec-historical.tar.gz *
 
       - name: "📤 Artifact upload"
         uses: actions/upload-artifact@v4
