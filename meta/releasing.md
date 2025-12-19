@@ -103,7 +103,7 @@ release.
     ```
 11. Push pending commits and ensure the unstable spec updates accordingly from the
     GitHub Actions pipeline.
-12. Deploy the release on the webserver. See internal wiki.
+12. Deploy the release on the webserver. See internal handbook.
 
 ## Patching a release
 
